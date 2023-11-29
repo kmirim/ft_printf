@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbarcelo <lbarcelo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 19:19:36 by lbarcelo          #+#    #+#             */
-/*   Updated: 2023/11/26 17:37:35 by lbarcelo         ###   ########.fr       */
+/*   Created: 2023/11/29 03:55:57 by lbarcelo          #+#    #+#             */
+/*   Updated: 2023/11/29 06:15:04 by lbarcelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libftprintf.h"
+#include "libftprintf.h"
 
 int	ft_check_format(const char *specifier, va_list *ap);
 
@@ -47,22 +47,16 @@ int	ft_check_format(const char *specifier, va_list *ap)
 	else if (*specifier == 's')
 		return (ft_putstr(va_arg(*ap, char *)));
 	else if (*specifier == 'u')
-		return (ft_putnbr(va_arg(*ap, unsigned int)));
+		return (ft_putnbr_u(va_arg(*ap, unsigned int)));
 	else if (*specifier == 'x' || *specifier == 'X')
 	{
 		if (*specifier == 'x')
-			return (ft_putstr(ft_putnbr_base(va_arg(*ap, int), 16, "0123456789ABCDEF")));
+			return (ft_puthex(va_arg(*ap, unsigned int), 'x'));
 		else
-			return (ft_putstr(ft_putnbr_base(va_arg(*ap, int), 16, "0123456789abcdef")));
+			return (ft_puthex(va_arg(*ap, unsigned int), 'X'));
 	}
 	else if (*specifier == 'p')
-		return (ft_putstr("0x"));
+		return (ft_printf_pointer(va_arg(*ap, unsigned long long)));
 	else
 		return (0);
 }
-/*
-int main (void)
-{
-	ft_printf("banana%s", "aiaiaia");
-	return (0);
-}*/
