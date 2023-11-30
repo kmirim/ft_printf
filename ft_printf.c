@@ -48,13 +48,10 @@ int	ft_check_format(const char *specifier, va_list *ap)
 		return (ft_putstr(va_arg(*ap, char *)));
 	else if (*specifier == 'u')
 		return (ft_putnbr_u(va_arg(*ap, unsigned int)));
-	else if (*specifier == 'x' || *specifier == 'X')
-	{
-		if (*specifier == 'x')
-			return (ft_puthex(va_arg(*ap, unsigned int), 'x'));
-		else
+	else if (*specifier == 'x')
+		return (ft_puthex(va_arg(*ap, unsigned int), 'x'));
+	else if (*specifier == 'X')
 			return (ft_puthex(va_arg(*ap, unsigned int), 'X'));
-	}
 	else if (*specifier == 'p')
 		return (ft_printf_pointer(va_arg(*ap, unsigned long long)));
 	else
